@@ -9,9 +9,10 @@ Original file is located at
 
 import numpy as np
 
-import tensorflow as tf
+import tensorflow as tf#tensorflow only used for the dataset not for the neural network
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.utils import to_categorical
+
 import matplotlib.pyplot as plt
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -28,6 +29,8 @@ x_test = x_test.reshape(x_test.shape[0], 28 * 28)
 # One-hot encode the labels
 y_train = to_categorical(y_train, 10)
 y_test = to_categorical(y_test, 10)
+
+
 np.random.seed(42)# sets random seed to the universal answer for everything, for reproduceability
 def clip_gradients(grad, clip_value=80):#clip_value decides what value it is clipped at, per my research, should be around 80
     return np.clip(grad, -clip_value, clip_value)# don't really need the -clip_value because we are using a reLU but just so it doesn't error
